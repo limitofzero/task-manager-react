@@ -8,6 +8,8 @@ import {
 import {SignIn} from "./auth/sign-in/SignIn";
 import {Provider} from "react-redux";
 import {store} from "./store";
+import {Main} from "./main/Main";
+import {GuardedRoute} from "./guards/GuardedRoute";
 
 function App() {
   return (
@@ -17,6 +19,9 @@ function App() {
                   <Route path="/sign-in">
                       <SignIn/>
                   </Route>
+                  <GuardedRoute path="/" isActive={() => false} redirectTo="/sign-in">
+                      <Main/>
+                  </GuardedRoute>
               </Switch>
           </Router>
       </Provider>
