@@ -1,7 +1,11 @@
 import {Button, Checkbox, FormControlLabel, Grid, Link, makeStyles, TextField} from "@material-ui/core";
 import {useForm, Controller} from "react-hook-form";
 import React from "react";
-import {AuthForm} from "./AuthForm";
+import {AuthForm} from "../AuthForm";
+import {useDispatch} from "react-redux";
+import {signIn} from "../../session/sessionSlice";
+import {api} from "../../api/api";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     control: {
@@ -18,7 +22,19 @@ const useStyles = makeStyles((theme) => ({
 
 export function SignIn() {
     const { control, handleSubmit } = useForm();
-    const onSubmit = (data: any) => console.log(data);
+    const dispatch = useDispatch();
+    const history = useHistory();
+
+    const onSubmit = async (form: { email: string, password: string, rememberMe: boolean }) => {
+        try {
+            const { data } = await api.post<{ token: string }>('login', form);
+            dispatch(signIn(data.token));
+            history.push('/');
+        } catch (e) {
+            // todo handle error
+            console.log(e);
+        }
+    };
 
     const classes = useStyles();
 
