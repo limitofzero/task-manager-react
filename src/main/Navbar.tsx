@@ -12,6 +12,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import InputIcon from '@material-ui/icons/Input';
 import Logo from "../Logo";
+import {CreateTaskModal} from "./create-task-window/CreateTaskModal";
 
 export interface NavbarProps {
     onMobileNavOpen: MouseEventHandler,
@@ -32,6 +33,7 @@ export const Navbar = ({ onMobileNavOpen, ...rest }: NavbarProps) => {
                 </RouterLink>
                 <Box flexGrow={1}/>
                 <Hidden mdDown={true}>
+                    <CreateTaskModal/>
                     <IconButton color="inherit">
                         <Badge
                             badgeContent={notifications.length}

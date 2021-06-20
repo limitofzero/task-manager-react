@@ -6,9 +6,9 @@ export interface Filter {
 }
 
 export function loadTasks(filter: Filter): Promise<Task[]> {
-    return api.get('tasks', {
+    return api.get<Task[]>('tasks', {
         params: {
             ...filter,
         }
-    })
+    }).then(resp => resp.data);
 }
