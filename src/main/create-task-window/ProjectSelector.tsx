@@ -31,7 +31,7 @@ export const ProjectSelector = ({ userId }: ProjectSelectorProps) => {
     }, [userId]);
 
     return (
-        <FormControl variant="outlined">
+        <FormControl variant="outlined" fullWidth>
             <InputLabel id="user-projects">Projects</InputLabel>
             <Select
                 labelId="user-projects"
