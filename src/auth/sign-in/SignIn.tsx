@@ -2,7 +2,7 @@ import {Button, Checkbox, FormControlLabel, Grid, Link, makeStyles, TextField} f
 import {useForm, Controller} from "react-hook-form";
 import React from "react";
 import {AuthForm} from "../AuthForm";
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import {signIn} from "../../session/sessionSlice";
 import {api} from "../../api/api";
 import { useHistory } from "react-router-dom";

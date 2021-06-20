@@ -1,5 +1,7 @@
-export function Main() {
+import {MainLayout} from "./MainLayout";
+
+export const Main = () => {
     return (
-        <div>test</div>
+        <MainLayout/>
     )
-}
+};

@@ -19,7 +19,7 @@ function App() {
                   <Route path="/sign-in">
                       <SignIn/>
                   </Route>
-                  <GuardedRoute path="/" isActive={() => false} redirectTo="/sign-in">
+                  <GuardedRoute path="/" isActive={() => true} redirectTo="/sign-in">
                       <Main/>
                   </GuardedRoute>
               </Switch>
