@@ -1,5 +1,7 @@
-import {Card, CardHeader, createStyles, makeStyles} from "@material-ui/core";
+import {Button, Card, CardHeader, createStyles, makeStyles} from "@material-ui/core";
 import {ProjectSelector} from "./ProjectSelector";
+import {useForm} from "react-hook-form";
+import React from "react";
 
 const useStyles = makeStyles((theme) =>
     createStyles({
@@ -14,12 +16,30 @@ const useStyles = makeStyles((theme) =>
 
 export const CreateTask = () => {
     const classes = useStyles();
+    const { control, handleSubmit } = useForm();
     const userId = 'af273cc5-3960-49bf-9d63-382712280d6f'; // todo remove
+
+    const onSubmit = (form: { projectId: string }) => {
+        console.log(form);
+    }
 
     return (
         <Card className={classes.paper}>
             <CardHeader title="Create task"/>
-            <ProjectSelector userId={userId}/>
+            <form noValidate onSubmit={handleSubmit(onSubmit)}>
+                <ProjectSelector control={control}
+                                 defaultValue=""
+                                 name="projectId"
+                                 userId={userId}/>
+
+                <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                >
+                    Create
+                </Button>
+            </form>
         </Card>
     )
 }
