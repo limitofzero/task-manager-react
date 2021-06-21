@@ -1,23 +1,23 @@
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {finishLoadProjects, startLoadProjects, State} from "../project/userProjectsSlice";
-import {loadProjects} from "../project/loadProjects";
-import {FormControl, InputLabel, MenuItem, Select} from "@material-ui/core";
+import {finishLoadProjects, startLoadProjects, State} from "../../project/userProjectsSlice";
+import {loadProjects} from "../../project/loadProjects";
+import {MenuItem} from "@material-ui/core";
 import * as React from "react";
-import {Control, FieldValues, Controller } from "react-hook-form";
-import {FormSelect} from "../../controls/FormSelect";
+import {Control, FieldValues } from "react-hook-form";
+import {FormSelect} from "../../../controls/FormSelect";
+import {FormControlProps} from "@material-ui/core/FormControl/FormControl";
 
-export interface ProjectSelectorProps {
+export interface ProjectSelectorProps extends FormControlProps {
     userId: string;
     control: Control<FieldValues>;
     name: string;
-    defaultValue?: string;
 }
 
-export const ProjectSelector = ({ userId, control, name, defaultValue }: ProjectSelectorProps) => {
+export const ProjectSelector = ({ userId, control, name, ...props }: ProjectSelectorProps) => {
     const dispatch = useDispatch();
 
-    const { isLoading, projects } = useSelector((state: any) => state.userProjects as State);
+    const { projects } = useSelector((state: any) => state.userProjects as State);
 
     useEffect(() => {
         dispatch(startLoadProjects());
@@ -28,11 +28,10 @@ export const ProjectSelector = ({ userId, control, name, defaultValue }: Project
 
     return (
         <FormSelect control={control}
-                    label="project"
+                    label="Project"
                     name={name}
                     defaultValue=""
-                    variant="outlined"
-                    fullWidth>
+                    {...props}>
             <MenuItem value="">
                 <em>None</em>
             </MenuItem>
