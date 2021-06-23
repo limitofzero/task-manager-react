@@ -1,9 +1,9 @@
 import {Button, Card, CardHeader, createStyles, makeStyles} from "@material-ui/core";
 import {ProjectSelector} from "./controls/ProjectSelector";
 import {useForm} from "react-hook-form";
-import {ChangeEvent, FormEventHandler, useState} from "react";
 import {TaskTypesSelector} from "./controls/TaskTypesSelector";
 import {ProjectUsersSelector} from "./controls/ProjectUsersSelector";
+import {FormTextField} from "../../controls/FormTextField";
 
 const useStyles = makeStyles((theme) =>
     createStyles({
@@ -13,9 +13,6 @@ const useStyles = makeStyles((theme) =>
             padding: theme.spacing(2, 4, 3),
             minWidth: '30em'
         },
-        control: {
-            marginBottom: theme.spacing(2),
-        }
     }),
 );
 
@@ -38,18 +35,26 @@ export const CreateTask = () => {
                                  name="projectId"
                                  fullWidth
                                  variant="outlined"
-                                 className={classes.control}
+                                 margin="normal"
                                  userId={userId}/>
                 <TaskTypesSelector control={control}
                                    fullWidth
                                    variant="outlined"
-                                   className={classes.control}
+                                   margin="normal"
                                    name="taskTypeId"/>
                 <ProjectUsersSelector projectId={projectId}
                                       control={control}
                                       name="performerId"
                                       fullWidth
+                                      margin="normal"
                                       variant="outlined"/>
+                <FormTextField control={control}
+                               label="Title"
+                               name="title"
+                               variant="outlined"
+                               margin="normal"
+                               required
+                               fullWidth/>
                 <Button
                     type="submit"
                     variant="contained"
