@@ -1,8 +1,9 @@
 import {Button, Card, CardHeader, createStyles, makeStyles} from "@material-ui/core";
 import {ProjectSelector} from "./controls/ProjectSelector";
 import {useForm} from "react-hook-form";
-import React from "react";
+import {ChangeEvent, FormEventHandler, useState} from "react";
 import {TaskTypesSelector} from "./controls/TaskTypesSelector";
+import {ProjectUsersSelector} from "./controls/ProjectUsersSelector";
 
 const useStyles = makeStyles((theme) =>
     createStyles({
@@ -20,7 +21,9 @@ const useStyles = makeStyles((theme) =>
 
 export const CreateTask = () => {
     const classes = useStyles();
-    const { control, handleSubmit } = useForm();
+    const { control, handleSubmit, watch } = useForm();
+
+    const projectId: string = watch('projectId')
     const userId = 'af273cc5-3960-49bf-9d63-382712280d6f'; // todo remove
 
     const onSubmit = (form: { projectId: string }) => {
@@ -42,6 +45,11 @@ export const CreateTask = () => {
                                    variant="outlined"
                                    className={classes.control}
                                    name="taskTypeId"/>
+                <ProjectUsersSelector projectId={projectId}
+                                      control={control}
+                                      name="performerId"
+                                      fullWidth
+                                      variant="outlined"/>
                 <Button
                     type="submit"
                     variant="contained"

@@ -1,8 +1,9 @@
 import {Control, FieldValues} from "react-hook-form";
-import {FormControlProps, FormControlTypeMap} from "@material-ui/core/FormControl/FormControl";
+import {FormControlProps} from "@material-ui/core/FormControl/FormControl";
 import {FormControl, InputLabel, Select} from "@material-ui/core";
 import { Controller } from "react-hook-form";
 import {ReactNode} from "react";
+import * as React from "react";
 
 export interface HookSelectProps extends FormControlProps {
     control: Control<FieldValues>;
