@@ -32,8 +32,8 @@ export const Navbar = ({ onMobileNavOpen, ...rest }: NavbarProps) => {
                     <Logo />
                 </RouterLink>
                 <Box flexGrow={1}/>
+                <CreateTaskModal/>
                 <Hidden mdDown={true}>
-                    <CreateTaskModal/>
                     <IconButton color="inherit">
                         <Badge
                             badgeContent={notifications.length}

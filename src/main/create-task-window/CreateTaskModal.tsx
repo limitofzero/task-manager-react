@@ -43,7 +43,7 @@ export const CreateTaskModal = () => {
                 }}
             >
                 <Fade in={open}>
-                    <CreateTask/>
+                    <CreateTask onCreateTask={handleClose}/>
                 </Fade>
             </Modal>
         </>
