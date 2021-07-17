@@ -3,9 +3,8 @@ import {useForm, Controller} from "react-hook-form";
 import React from "react";
 import {AuthForm} from "../AuthForm";
 import { useDispatch } from "react-redux";
-import {signIn} from "../../session/sessionSlice";
-import {api} from "../../api/api";
 import { useHistory } from "react-router-dom";
+import {signIn, SignInOptions} from "../../session/signIn";
 
 const useStyles = makeStyles((theme) => ({
     control: {
@@ -25,15 +24,14 @@ export function SignIn() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const onSubmit = async (form: { email: string, password: string, rememberMe: boolean }) => {
+    const onSubmit = async (form: SignInOptions) => {
         try {
-            const { data } = await api.post<{ token: string }>('login', form);
-            dispatch(signIn(data.token));
+            await signIn(form)(dispatch);
             history.push('/');
         } catch (e) {
-            // todo handle error
-            console.log(e);
+            
         }
+        
     };
 
     const classes = useStyles();

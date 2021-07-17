@@ -29,7 +29,7 @@ export const CreateTask = ({ onCreateTask }: CreateTaskProps) => {
     const classes = useStyles();
     const { control, handleSubmit, watch } = useForm();
 
-    const projectId: string = watch('projectId')
+    const projectId: string = watch('projectId');
     const userId = 'af273cc5-3960-49bf-9d63-382712280d6f'; // todo remove
 
     const onSubmit = async (form: Omit<CreateTaskOptions, 'statusId' | 'userId'>) => {

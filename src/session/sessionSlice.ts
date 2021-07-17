@@ -2,16 +2,23 @@ import {createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
 
 export interface State {
     token: string | null;
+    isLoading: boolean;
 }
 
 export const sessionSlice = createSlice({
     name: 'session',
     initialState: {
         token: null,
+        isLoading: false,
     },
     reducers: {
-        signIn: (state: Draft<State>, action: PayloadAction<string>) => {
-            state.token = action.payload;
+        startSignIn: (state: Draft<State>) => {
+            state.isLoading = true;
+        },
+        finishSignIn: (state: Draft<State>, { payload }: PayloadAction<{ token: string }>) => {
+            const { token } = payload;
+            state.token = token;
+            state.isLoading = false;
         },
         logout: (state: Draft<State>) => {
             state.token = null;
@@ -19,5 +26,5 @@ export const sessionSlice = createSlice({
     }
 })
 
-export const { signIn, logout } = sessionSlice.actions;
+export const { startSignIn, finishSignIn, logout } = sessionSlice.actions;
 export const sessionReducer = sessionSlice.reducer;
